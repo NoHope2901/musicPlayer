@@ -22,7 +22,20 @@ const music_list = [
         name : 'Ít Nhưng Dài Lâu',
         artist : 'Nam Con REMIX',
         music : 'music/Ít Nhưng Dài Lâu - Yan Nguyễn x Chu Thúy Quỳnh - Nam Con REMIX.mp3'
-    }
+    },
+    {
+        img : 'image/ghost.png',
+        name : 'Khi Em Lớn',
+        artist : 'Frexs Remix',
+        music : 'music/KHI EM LỚN (Frexs Remix).mp3'
+    },
+    {
+        img : 'image/gojo.jpg',
+        name : 'AUTHENTIC',
+        artist : 'ft SA MY D - ĐẶNG LONG REMIX',
+        music : 'music/AUTHENTIC ft SA MY D - ĐẶNG LONG REMIX.mp3'
+    },
+
 ];
 
 let track_art = document.querySelector('.track-art');
@@ -44,7 +57,7 @@ let curr_track = document.querySelector('audio');
 
 let isRandom = false;
 let isRepeat = false;
-let curr_index = 1;
+let curr_index = 0;
 let isPlaying = false;
 let updateTimer;
 
@@ -133,20 +146,24 @@ function reset() {
 // playpause
 function playpause() {
     isPlaying ? pauseTrack() : playTrack()
-    if(isPlaying)
-      cdThumbAnimate.play()
-    else cdThumbAnimate.pause()
+    
 }
 function playTrack() {
     curr_track.play();
     isPlaying = true;
     playpause_btn.innerHTML = playIcon
+    if(isPlaying)
+      cdThumbAnimate.play()
+    else cdThumbAnimate.pause()
 }
 
 function pauseTrack() {
     curr_track.pause()
     isPlaying = false;
     playpause_btn.innerHTML = pauseIcon
+    if(isPlaying)
+      cdThumbAnimate.play()
+    else cdThumbAnimate.pause()
 }
 // prev
 function prevTrack() {
@@ -205,3 +222,35 @@ function setUpdate(){
     }
     
 }
+/*
+#################################################################
+#                             _
+#                          _ooOoo_
+#                         o8888888o
+#                         88" . "88
+#                         (| -_- |)
+#                         O\  =  /O
+#                      ____/`---'\____
+#                    .'  \\|     |//  `.
+#                   /  \\|||  :  |||//  \			
+#                  /  _||||| -:- |||||_  \			
+#                  |   | \\\  -  /'| |   |
+#                  | \_|  `\`---'//  |_/ |
+#                  \  .-\__ `-. -'__/-.  /
+#                ___`. .'  /--.--\  `. .'___
+#             ."" '<  `.___\_<|>_/___.' _> \"".
+#            | | :  `- \`. ;`. _/; .'/ /  .' ; |
+#            \  \ `-.   \_\_`. _.'_/_/  -' _.' /
+#=============`-.`___`-.__\ \___  /__.-'_.'_.-'=================#
+                           `=--=-'
+          _.-/`)
+         // / / )
+      .=// / / / )
+     //`/ / / / /
+    // /     ` /
+   ||         /
+    \\       /
+     ))    .'
+    //    /
+         /
+*/
