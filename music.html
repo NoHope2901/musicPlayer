@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./music.css">
+    <title>Music Player</title>
+</head>
+<body>
+    <div class="app">
+        <div class="wrapper">
+            <div class="detail">
+                <div class="track-art"></div>
+                <div class="track-name">da;lkf ;sldkfsjadghflsdjh da;lkfj ;lksdjf ;kldsfj Love</div>
+                <div class="track-artist">son tung</div>
+            </div>
+            <div class="slider">
+                <input type="range" class="seek_slider" min="0" max="100" value="0" name="" id="">
+                <div class="time-remain">-04:00</div>
+            </div>
+            <audio src="" preload="metadata"></audio>
+            <div class="control">
+                <div class="track-repeat"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-repeat" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3"></path>
+                    <path d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3"></path>
+                 </svg></div>
+                <div class="prev-track">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-skip-back" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M20 5v14l-12 -7z"></path>
+                        <line x1="4" y1="5" x2="4" y2="19"></line>
+                     </svg>
+                </div>
+                <div class="playpause-track">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-play" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M7 4v16l13 -8z"></path>
+                     </svg> -->
+                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-pause" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+                        <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+                     </svg>
+                </div>
+                <div class="next-track">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-skip-forward" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 5v14l12 -7z"></path>
+                        <line x1="20" y1="5" x2="20" y2="19"></line>
+                     </svg>
+                </div>
+                <div class="track-random">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-shuffle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M18 4l3 3l-3 3"></path>
+                        <path d="M18 20l3 -3l-3 -3"></path>
+                        <path d="M3 7h3a5 5 0 0 1 5 5a5 5 0 0 0 5 5h5"></path>
+                        <path d="M21 7h-5a4.978 4.978 0 0 0 -2.998 .998m-4.002 8.003a4.984 4.984 0 0 1 -3 .999h-3"></path>
+                     </svg>
+                </div>
+            </div>
+            <div class="wave">
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+                <div class="stroke"></div>
+            </div>
+            <div class="play-list"></div>
+        </div>
+    </div>
+    <script src="/music.js"></script>
+</body>
+</html>
