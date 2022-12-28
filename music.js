@@ -35,53 +35,173 @@ let prev_btn = document.querySelector('.prev-track');
 
 let seek_slider = document.querySelector('.seek_slider');
 
-let curr_time = document.querySelector('.current-time');
+
 let time_remain = document.querySelector('.time-remain');
 let wave = document.querySelector('.wave');
 let randomIcon = document.querySelector('.track-random');
+let repeatIcon = document.querySelector('.track-repeat');
 let curr_track = document.querySelector('audio');
 
 let isRandom = false;
 let isRepeat = false;
-let curr_index = 2;
+let curr_index = 1;
+let isPlaying = false;
+let updateTimer;
 
-track_art.style.backgroundImage = 'url(/image/eren.jpg)'
-curr_track.src= 'music/A y Mạc.mp3'
-track_name.textContent = 'A Y Mac'
-track_artist.textContent = 'Chinese Singer'
-curr_track.play()
-console.log(curr_track.duration)
-// curr_track.play()
+const cdThumbAnimate = track_art.animate([{ transform: "rotate(360deg)" }], {
+    duration: 10000, // 10 seconds
+    iterations: Infinity
+});
+cdThumbAnimate.pause()
 
-// loadTrack(curr_index)
-// load
-// function loadTrack(curr_index) {
-//     reset();
-//     curr_track.src = music_list[curr_index].music
-//     curr_track.load();
-//     curr_track.play()
-//     track_art.style.backgroundImage = `url(${music_list[curr_index].img})`
-//     track_name.textContent = music_list[curr_index].name
-//     track_artist.textContent = music_list[curr_index].artist
 
-//     curr_track.addEventListener('ended', nextTrack)
-// }
+let pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-play" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+<path d="M7 4v16l13 -8z"></path>
+</svg>`
+
+let playIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-pause" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+<rect x="6" y="5" width="4" height="14" rx="1"></rect>
+<rect x="14" y="5" width="4" height="14" rx="1"></rect>
+</svg>`
+
+loadTrack(curr_index)
+//load
+function loadTrack(curr_index) {
+    clearInterval(updateTimer)
+    reset();
+    curr_track.src = music_list[curr_index].music
+    curr_track.load();
+
+    track_art.style.backgroundImage = `url(${music_list[curr_index].img})`
+    track_name.textContent = music_list[curr_index].name
+    track_artist.textContent = music_list[curr_index].artist
+
+    updateTimer = setInterval(setUpdate,1000);
+
+    curr_track.addEventListener('ended', nextTrack)
+}
+
+playpause_btn.addEventListener('click', ()=> {
+    playpause()
+})
+next_btn.addEventListener('click', ()=> {
+    nextTrack()
+})
+prev_btn.addEventListener('click', ()=> {
+    prevTrack()
+})
+
+randomIcon.addEventListener('click', ()=>{
+    isRandom = isRandom? false: true;
+   
+    if(isRandom) {
+        randomIcon.classList.add('active')
+        repeatIcon.classList.remove('active')
+        isRepeat = false
+    }
+    else {
+        randomIcon.classList.remove('active')
+    }
+    
+})
+repeatIcon.addEventListener('click', ()=>{
+    isRepeat = isRepeat? false: true;
+
+    if(isRepeat) {
+        repeatIcon.classList.add('active')
+        randomIcon.classList.remove('active')
+        isRandom = false
+    }
+    else {
+        repeatIcon.classList.remove('active')
+    }
+    
+})
+
+seek_slider.addEventListener('change',()=> {
+    seekTo()
+})
 
 // reset
 function reset() {
     seek_slider.value = 0;
-    time_remain.textContent='00:00' 
+    time_remain.textContent='00:00'
+    playpause_btn.innerHTML = pauseIcon 
 }
 // playpause
 function playpause() {
+    isPlaying ? pauseTrack() : playTrack()
+    if(isPlaying)
+      cdThumbAnimate.play()
+    else cdThumbAnimate.pause()
+}
+function playTrack() {
+    curr_track.play();
+    isPlaying = true;
+    playpause_btn.innerHTML = playIcon
+}
 
+function pauseTrack() {
+    curr_track.pause()
+    isPlaying = false;
+    playpause_btn.innerHTML = pauseIcon
 }
 // prev
+function prevTrack() {
+    let sumSongs = music_list.length;
+    if(!isRepeat && !isRandom) {
+        (curr_index > 0) ? curr_index-=1:curr_index= sumSongs-1;
+    } else if(isRandom) {
+        let x = random()
+        x != curr_index? curr_index = x : curr_index +=1;
+    }
+    loadTrack(curr_index)
+    playTrack()
+}
 // nex
 function nextTrack() {
-
+    let sumSongs = music_list.length;
+    if(!isRepeat && !isRandom) {
+        (curr_index < sumSongs-1) ? curr_index+=1:curr_index= 0
+    } else if(isRandom) {
+        let x = random()
+        x != curr_index? curr_index = x : curr_index +=1;
+    }
+    loadTrack(curr_index)
+    playTrack()
 }
 // random
-// repeat
+function random() {
+    return Number.parseInt(Math.random() * music_list.length)
+}
+
 // seekto
+function seekTo() {
+    let percent = seek_slider.value;
+    curr_track.currentTime = percent*curr_track.duration/100;
+
+}
 // update
+function setUpdate(){
+    //console.log(random())
+    
+    let seekPosition = 0;
+    if(!isNaN(curr_track.duration)){
+
+        seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+        seek_slider.value = seekPosition;
+
+        let timeLeft = Math.floor(curr_track.duration - curr_track.currentTime); 
+        let minutesLeft = Math.floor(timeLeft/ 60);
+        let secondsLeft = Math.floor(timeLeft - (minutesLeft * 60));
+       
+        if(secondsLeft < 10) {secondsLeft = "0" + secondsLeft; }
+        if(minutesLeft < 10) { minutesLeft = "0" + minutesLeft; }
+
+        time_remain.textContent = "-" + minutesLeft + ":" + secondsLeft;
+        
+    }
+    
+}

@@ -82,6 +82,13 @@ input[type='range'] {
     display: flex;
     justify-content: space-between;
 }
+.control > div:hover {
+    opacity: .2;
+    /* color: #63de67; */
+}
+.control .active {
+    color: #de63d0;
+}
 
 .wave {
     
