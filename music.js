@@ -35,6 +35,61 @@ const music_list = [
         artist : 'ft SA MY D - ĐẶNG LONG REMIX',
         music : 'music/AUTHENTIC ft SA MY D - ĐẶNG LONG REMIX.mp3'
     },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Yêu đừng sợ đau',
+        artist : 'Frexs Remix',
+        music : 'music/Yêu Đừng Sợ Đau (Frexs Remix).mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Anh chưa biết em',
+        artist : 'conekomusic',
+        music : 'music/anhchuabietem.mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Ngủ một mình',
+        artist : 'conekomusic',
+        music : 'music/ngumotminh.mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'WFU',
+        artist : 'conekomusic',
+        music : 'music/wfu.mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Túy âm',
+        artist : 'conekomusic',
+        music : 'music/tuyam.mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Khuôn mặt đáng thương',
+        artist : 'conekomusic',
+        music : 'music/kmdt.mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Please me',
+        artist : 'conekomusic',
+        music : 'music/plsme.mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Chúng ta không thuộc về nhau',
+        artist : 'conekomusic',
+        music : 'music/ctktvn.mp3'
+    },
+    {
+        img : 'image/sadgirl.jpg',
+        name : 'Finesse',
+        artist : 'conekomusic',
+        music : 'music/finesse.mp3'
+    },
+    
 
 ];
 
